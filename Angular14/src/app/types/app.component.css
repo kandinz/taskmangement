@@ -1,0 +1,8 @@
+a {
+    color: white;
+    text-decoration-line: none;
+}
+
+nav > div {
+    display: inline-block;
+}

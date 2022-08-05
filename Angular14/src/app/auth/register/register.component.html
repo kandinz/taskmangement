@@ -1,0 +1,32 @@
+    <div class="flex h-screen justity-center">
+        <form (ngSubmit)="submit()" #myForm ="ngForm"  class="p-4 rounded-lg border m-auto form-control" action="">
+            <h4 class="text-center text-left">Register</h4>
+            <div class="my-4 w-full">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="p-2 rounded form-control" placeholder="Email Address" name="email" [(ngModel)]="form.email" #email="ngModel">
+            </div>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="p-4 bg-warning rounded">
+                Email field must be valid
+            </div>
+            <div class="my-4 w-full">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="p-2 rounded form-control" placeholder="Password" #password="ngModel" name="password" [(ngModel)]="form.password">
+            </div>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="p-4 bg-warning rounded">
+                Password field must be valid
+            </div>
+            <div class="my-4 w-full">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="p-2 rounded form-control" placeholder="Confirm Password" #confirmPassword="ngModel" name="confirmPassword" [(ngModel)]="form.confirmPassword">
+            </div>
+            <div *ngIf="password != confirmPassword  && (confirmPassword.dirty || confirmPassword.touched)" class="p-4 bg-warning rounded">
+                Password not matching
+            </div>
+            <div>
+                <input type="submit" 
+                [disabled]="myForm.form.invalid"
+                class="form-control mt-4 bg-primary" name="Login" value="Login">
+            </div>
+        </form>
+    </div>
+    

@@ -1,0 +1,56 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="shadow pb-2">
+               <h1> Today</h1>
+               <button (click)="clearTask()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal">
+                  New Task
+                </button>
+                <div class="container mt-5" *ngFor="let task of tasks">
+                  <div (click)="getTask(task.id)" data-bs-toggle="modal" data-bs-target="#taskModal">
+                    <h5><i class="fa fa-asterisk fa-fw me-3"></i>{{task.name }}</h5>
+                    <p>{{task.content}}</p>
+                  </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>        
+  </div>
+  
+  <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h5>
+                <ng-container *ngIf="!task.id">New Task</ng-container>
+                <ng-container *ngIf="task.id">Update Task</ng-container>
+              </h5>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="input-group  input-group-lg">
+                <input type="text" class="form-control mb-3" placeholder="Task name" name="name" [(ngModel)]="task.name" >
+              </div>
+              <div class="form-floating">
+                <textarea id="taskContent" class="form-control mb-3" style="height: 200px" rows="5" placeholder="Description..." name="content" [(ngModel)]="task.content"></textarea>
+                <label for="taskContent">Description</label>
+              </div>
+              <div class="input-group">
+                <select class="form-select" aria-label="Assign">
+                  <option selected>Assign</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" (click) ="updateTask()"  class="btn btn-primary"  data-bs-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>

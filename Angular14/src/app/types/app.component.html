@@ -1,0 +1,18 @@
+<nav class="position-relative p-4 bg-primary text-white">
+    <div class="position-absolute start-0 translate-middle-y ms-4">
+        <a routerLink="/">Task Management</a>
+    </div>
+    <div class="position-absolute end-0 translate-middle-y me-4">
+        <ng-container *ngIf="!checkAuthenticated()">
+            <a class="mx-4" routerLink="/login"> Login</a>
+            <a class="mx-4" routerLink="/register"> Register</a>
+        </ng-container>
+        <ng-container  *ngIf="checkAuthenticated()">
+            <a class="mx-4">Hi {{getEmailLoggedIn()}}</a>
+            <a class="mx-4" (click)="logOut()"> Log out</a>
+        </ng-container>
+    </div>
+</nav>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
